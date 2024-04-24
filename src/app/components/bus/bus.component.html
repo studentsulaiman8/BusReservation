@@ -1,0 +1,204 @@
+<div class="column">
+<table class="table">
+  <thead>
+  <tr>
+    <th>Bus Number</th>
+    <th>Source</th>
+    <th>Destination</th>
+    <th>Departure Time</th>
+    <th>Departure Date</th>
+    <th>Arrival Time</th>
+    <th>Arrival Date</th>
+    <th>Ticket Price</th>
+    <th>Capacity</th>
+    <th>Actions</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let bus of buses; let i = index">
+    <td>{{ bus.busNumber }}</td>
+    <td>{{ bus.source }}</td>
+    <td>{{ bus.destination }}</td>
+    <td>{{ bus.departureTime }}</td>
+    <td>{{ bus.departureDate }}</td>
+    <td>{{ bus.arrivalTime }}</td>
+    <td>{{ bus.arrivalDate }}</td>
+    <td>{{ bus.ticketPrice }}</td>
+    <td>{{ bus.capacity }}</td>
+    <td>
+      <button class="btn btn-info" (click)="updateBus(i)">Update</button>
+      <button class="btn btn-danger" (click)="deleteBus(i)">Delete</button>
+    </td>
+  </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="inline">
+  <div class="left">
+  <label>busNumber:</label>
+  <input #busNumber="ngModel" [(ngModel)]="newBus.busNumber" id="id" name="id" required type="number">
+</div>
+</div>
+<div class="inline">
+  <div class="left">
+  <label>source:</label>
+  <input #source="ngModel" [(ngModel)]="newBus.source" appForbiddenName="zzz" id="name" minlength="4" name="source"
+         required type="text">
+  </div>
+</div>
+<div class="inline">
+  <div class="left">
+  <label>destination:</label>
+  <input #destination="ngModel" [(ngModel)]="newBus.destination" appForbiddenName="yyy" id="destination" minlength="4"
+         required destination="destination" type="text">
+  </div>
+</div>
+<div class="inline">
+  <div class="left">
+  <label>departureTime:</label>
+
+  <input #departureTime="ngModel" [(ngModel)]="newBus.departureTime" appForbiddenName="zzz" id="departureTime" minlength="4" name="departureTime"
+         required type="time">
+  </div>
+</div>
+<div class="inline">
+  <div class="left">
+  <label>departureDate:</label>
+  <input #departureDate="ngModel" [(ngModel)]="newBus.departureDate" appForbiddenName="zzz" id="departureDate" minlength="4" name="departureDate"
+         required type="date">
+  </div>
+</div>
+<div class="inline">
+  <div class="right">
+  <label>arrivalTime:</label>
+  <input #arrivalTime="ngModel" [(ngModel)]="newBus.arrivalTime" appForbiddenName="yyy" id="arrivalTime" minlength="4"
+         required arrivalTime="arrivalTime" type="time">
+  </div>
+</div>
+<div class="inline">
+  <div class="right">
+  <label>arrivalDate:</label>
+  <input #arrivalDate="ngModel" [(ngModel)]="newBus.arrivalDate" appForbiddenName="yyy" id="arrivalDate" minlength="4"
+         required arrivalDate="arrivalDate" type="date">
+  </div>
+</div>
+<div class="inline">
+  <div class="right">
+  <label>ticketPrice:</label>
+  <input #ticketPrice="ngModel" [(ngModel)]="newBus.ticketPrice" id="ticketPrice" name="ticketPrice" required type="number">
+  </div>
+</div>
+<div class="inline">
+  <div class="right">
+  <label>capacity:</label>
+  <input #capacity="ngModel" [(ngModel)]="newBus.capacity" id="capacity" name="capacity" required type="number">
+  </div>
+</div>
+<div class="buttonSub">
+  <button class="btn btn-success" (click)="addBus()">Submit</button>
+</div>
+
+<div class="errors">
+  <div
+    *ngIf="busNumber.invalid && (busNumber.dirty || busNumber.touched)"
+    class="alert"
+  >
+    <div class="inline" *ngIf="busNumber.errors?.['required']">BusNumber must be a number value and required.</div>
+  </div>
+
+  <div
+    *ngIf="source.invalid && (source.dirty || source.touched)"
+    class="alert"
+  >
+    <div *ngIf="source.errors?.['required']">source is required.</div>
+    <div class="inline" *ngIf="source.errors?.['minlength']">
+      Source must be at least 20 characters long.
+    </div>
+    <div *ngIf="source.errors?.['appForbiddenName']">
+      Name cannot be zzz.
+    </div>
+  </div>
+
+  <div
+    *ngIf="destination.invalid && (destination.dirty || destination.touched)"
+    class="alert"
+  >
+    <div *ngIf="destination.errors?.['required']">destination is required.</div>
+    <div class="inline" *ngIf="destination.errors?.['minlength']">
+      destination must be at least 40 characters long.
+    </div>
+    <div *ngIf="destination.errors?.['forbiddenName']">
+      Destination cannot be yyy.
+    </div>
+  </div>
+
+  <div
+    *ngIf="departureTime.invalid && (departureTime.dirty || departureTime.touched)"
+    class="alert"
+  >
+    <div class="inline" *ngIf="departureTime.errors?.['required']">departureTime is required.</div>
+    <div  class="inline" *ngIf="departureTime.errors?.['minlength']">
+      departureTime must be at least 20 characters long.
+    </div>
+    <div *ngIf="departureTime.errors?.['appForbiddenName']">
+      departureTime cannot be zzz.
+    </div>
+  </div>
+
+  <div
+    *ngIf="departureDate.invalid && (departureDate.dirty || departureDate.touched)"
+    class="alert"
+  >
+    <div class="inline" *ngIf="departureDate.errors?.['required']">departureDate is required.</div>
+    <div *ngIf="departureDate.errors?.['minlength']">
+      departureDate must be at least 20 characters long.
+    </div>
+    <div *ngIf="departureDate.errors?.['appForbiddenName']">
+      departureDate cannot be zzz.
+    </div>
+  </div>
+
+  <div
+    *ngIf="arrivalTime.invalid && (arrivalTime.dirty || arrivalTime.touched)"
+    class="alert"
+  >
+    <div *ngIf="arrivalTime.errors?.['required']">arrivalTime is required.</div>
+    <div  class="inline" *ngIf="destination.errors?.['minlength']">
+      arrivalTime must be at least 40 characters long.
+    </div>
+    <div *ngIf="arrivalTime.errors?.['forbiddenName']">
+      arrivalTime cannot be yyy.
+    </div>
+  </div>
+
+  <div
+    *ngIf="arrivalDate.invalid && (arrivalDate.dirty || arrivalDate.touched)"
+    class="alert"
+  >
+    <div *ngIf="arrivalDate.errors?.['required']">arrivalDate is required.</div>
+    <div class="inline" *ngIf="destination.errors?.['minlength']">
+      arrivalDate must be at least 40 characters long.
+    </div>
+    <div *ngIf="arrivalDate.errors?.['forbiddenName']">
+      arrivalDate cannot be yyy.
+    </div>
+  </div>
+
+  <div
+    *ngIf="ticketPrice.invalid && (ticketPrice.dirty || ticketPrice.touched)"
+    class="alert"
+  >
+    <div class="inline" *ngIf="ticketPrice.errors?.['required']">ticketPrice must be a number value</div>
+  </div>
+
+  <div
+    *ngIf="capacity.invalid && (capacity.dirty || capacity.touched)"
+    class="alert"
+  >
+    <div *ngIf="capacity.errors?.['required']">capacity must be a number value</div>
+  </div>
+</div>
+
+
+

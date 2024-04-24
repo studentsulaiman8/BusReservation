@@ -1,0 +1,49 @@
+* {
+  page: auto;
+}
+table {
+  margin: 10px;
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  border: 1px solid black;
+  padding: 8px;
+  column-fill: auto;
+  text-align: left;
+}
+
+/*new design*/
+
+
+.inline {
+  display: inline-block;
+  margin-top: 40px;
+  padding: 10px;
+}
+
+.left {
+  display: flex;
+  float: left;
+  margin-right: 133px;
+}
+
+.right {
+  display: flex;
+  float: left;
+}
+
+.errors{
+  display: none;
+  font-size: 10px;
+}
+
+.buttonSub {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  position:fixed;
+  align-content: normal;
+}
+

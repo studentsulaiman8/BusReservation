@@ -1,0 +1,30 @@
+<header>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3 col-md-3 col-3">
+        <div class="logo-container">
+          <img src="../../../assets/icon.png" alt="bus-icon-logo" class="logo" routerLink="/">
+        </div>
+      </div>
+      <div class="col-md-9 col-sm-9 col-9 text-end">
+        <div class="menu-icon" (click)="openMenu()">
+          <i class="{{menu_icon}}"> </i>
+            </div>
+            <div class="desktop_menu" [class.mobile_menu]="menuValue">
+              <ul>
+                <li class="active" routerLink="/">Home</li>
+                <li routerLink="/about">About</li>
+                <li routerLink="/contact">Contact</li>
+                <li routerLink="/bus">Bus</li>
+                <input role="searchbox" type="text" placeholder="search">
+                <button type="button" class="btn btn-primary" data-mdb-ripple-init>search
+                  <i class="fas fa-search"></i>
+                </button>
+                  <button type="button" class="btn btn-danger" data-mdb-ripple-init>Logout
+                </button>
+              </ul>
+            </div>
+        </div>
+      </div>
+  </div>
+</header>
